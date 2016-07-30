@@ -25,7 +25,8 @@ app.get('/todos', function (req, res) {
 
 app.post('/todos',function (req, res) {
 	todos.push(req.body);
-	res.status(201).send({});
+	let location = req.url + '/' + (todos.length - 1)
+	res.status(201).send(location);
 });
 
 app.listen(PORT, function () {
