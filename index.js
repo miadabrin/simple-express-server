@@ -1,7 +1,7 @@
 'use strict';
 var express = require('express');
-var bodyParser = require('body-parser');
 var app = express();
+var bodyParser = require('body-parser');
 app.use(bodyParser.json())
 
 // Listen on this port
@@ -13,6 +13,19 @@ var todos = [];
 
 // TODO Write server here
 
+var TodoSchema = {
+    type: 'object',
+    properties: {
+        text: {
+            type: 'string',
+            required: true
+        },
+        completed: {
+            type: 'boolean',
+            required: true
+        }
+    }
+}
 
 //Version
 app.get('/', function (req, res) {
@@ -23,21 +36,19 @@ app.get('/todos', function (req, res) {
   res.send(todos);
 });
 
-app.post('/todos',function (req, res) {
+app.post('/todos', function (req, res) {
 	todos.push(req.body);
 	let location = req.url + '/' + (todos.length - 1)
 	res.status(201).send(location);
 });
 
-app.put('/todos/*',function (req, res) {
-	let index = req.url.split('/').pop();
-	todos[index] = req.body;
+app.put('/todos/:index',function (req, res) {
+	todos[req.params.index] = req.body;
 	res.status(204).send();
 });
 
-app.delete('/todos/*',function (req, res) {
-	let index = req.url.split('/').pop();
-	todos.splice(index, 1);
+app.delete('/todos/:index',function (req, res) {
+	todos.splice(req.params.index, 1);
 	res.status(204).send();
 });
 
