@@ -1,0 +1,17 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "author": "Your name here",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "2.3.3",
+    "supertest": "1.1.0",
+    "chai": "3.3.0"
+  }
+}
