@@ -39,7 +39,7 @@ app.get('/todos', function (req, res) {
 
 app.post('/todos', validate({body: TodoSchema}), function (req, res) {
 	todos.push(req.body);
-	let location = req.url + '/' + (todos.length - 1)
+	var location = req.url + '/' + (todos.length - 1)
 	res.status(201).send(location);
 });
 
@@ -49,6 +49,9 @@ app.put('/todos/:index',function (req, res) {
 });
 
 app.delete('/todos/:index',function (req, res) {
+	if(todos.length <= req.params.index){
+		res.status(404).send();	
+	}
 	todos.splice(req.params.index, 1);
 	res.status(204).send();
 });
@@ -57,11 +60,9 @@ app.delete('/todos/:index',function (req, res) {
 app.use(function(err, req, res, next) {
     var responseData;
     if (err.name === 'JsonSchemaValidation') {
-        res.status(400).send('');
-    } else {
-        // pass error to next error middleware handler 
-        next(err);
+        res.status(400).send();
     }
+    next();
 });
 
 app.listen(PORT, function () {
