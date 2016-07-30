@@ -29,6 +29,18 @@ app.post('/todos',function (req, res) {
 	res.status(201).send(location);
 });
 
+app.put('/todos/*',function (req, res) {
+	let index = req.url.split('/').pop();
+	todos[index] = req.body;
+	res.status(204).send();
+});
+
+app.delete('/todos/*',function (req, res) {
+	let index = req.url.split('/').pop();
+	todos.splice(index, 1);
+	res.status(204).send();
+});
+
 app.listen(PORT, function () {
   console.log('Backend challange app listening on port 3000!');
 });
