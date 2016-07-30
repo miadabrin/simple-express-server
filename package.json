@@ -8,6 +8,7 @@
   },
   "author": "Your name here",
   "dependencies": {
+    "express": "^4.14.0"
   },
   "devDependencies": {
     "mocha": "2.3.3",
