@@ -85,7 +85,7 @@ describe('Backend challenge', function() {
     request.
     put('/todos/0').
     send({
-      text: 'Get hired @ Personalics !',
+      text: 'Get hired @ *** !',
       completed: false
     }).
     expect(204, done);
@@ -110,7 +110,7 @@ describe('Backend challenge', function() {
       expect(response.body[1].completed).to.be.an('boolean');
 
 
-      expect(response.body[0].text).to.equal('Get hired @ Personalics !');
+      expect(response.body[0].text).to.equal('Get hired @ *** !');
       expect(response.body[0].completed).to.equal(false);
 
       expect(response.body[1].text).to.equal('Finish the backend challenge');
@@ -141,7 +141,7 @@ describe('Backend challenge', function() {
       expect(response.body[0].text).to.be.an('string');
       expect(response.body[0].completed).to.be.an('boolean');
 
-      expect(response.body[0].text).to.equal('Get hired @ Personalics !');
+      expect(response.body[0].text).to.equal('Get hired @ *** !');
       expect(response.body[0].completed).to.equal(false);
 
       done();
